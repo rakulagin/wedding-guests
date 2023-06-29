@@ -66,9 +66,9 @@ user.firstName.toLowerCase().includes(searchValue.toLowerCase()) || user.surName
                   <p>пара: {user.pair}</p>
                   <p>Место: {user.place}</p>
                   <p>Машина: {user.car}</p>
-                  <p>пойдет: {user.vine}</p>
-                  <p>пойдет: {user.spirit}</p>
-                  <p>Второй день: {user.secondDay}</p>
+                  <p>Вино: {user.vine}</p>
+                  <p>Крепкие: {user.spirit}</p>
+                  {<p>Второй день: {user.secondDay}</p>}
                 </div>
               </div>
             </div>
