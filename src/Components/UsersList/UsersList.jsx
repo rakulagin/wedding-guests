@@ -25,12 +25,21 @@ const UsersList = () => {
             <div key={index} className="col-md-12 g-3 p-0 col-lg-6 ">
               <div className="border h-100 m-2">
                 <img className="w-100" src={`http://backend.rakulagin.com${user.img}`} alt="photo"/>
-                <h2>{user.firstName} {user.surName}</h2>
-                <p className="m-0">Как мы называем: {user.nickname}</p>
-                <p className="m-0">Сторона: {user.side === 1 ? 'Жениха' : 'Невесты'}</p>
-                <p className="m-0">Активность: {user.activity === true ? 'Да' : 'Нет'}</p>
-                <p className="m-0">История: {user.ourHistory ? user.ourHistory : 'Нет'}</p>
-                <p className="m-0">Важность: {user.weight===1 ? 'Максимальная' : user.weight===2 ?  'Высокая' : user.weight===3 ? 'Средняя' : null}</p>
+                <div className='p-4'>
+                  <h2>{user.firstName} {user.surName}</h2>
+                  <p>Как мы называем: {user.nickname}</p>
+                  <p>Сторона: {user.side === 1 ? 'Жениха' : 'Невесты'}</p>
+                  <p>Активность: {user.activity === true ? 'Да' : 'Нет'}</p>
+                  <p>История: {user.ourHistory ? user.ourHistory : 'Нет'}</p>
+                  <p>Важность: {user.weight===1 ? 'Максимальная' : user.weight===2 ?  'Высокая' : user.weight===3 ? 'Средняя' : null}</p>
+                  <p>пойдет: {user.accept}</p>
+                  <p>пара: {user.pair}</p>
+                  <p>Место: {user.place}</p>
+                  <p>Машина: {user.car}</p>
+                  <p>пойдет: {user.vine}</p>
+                  <p>пойдет: {user.spirit}</p>
+                  <p>Второй день: {user.secondDay}</p>
+                </div>
               </div>
             </div>
           )
