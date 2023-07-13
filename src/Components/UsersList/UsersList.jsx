@@ -39,7 +39,7 @@ user.firstName.toLowerCase().includes(searchValue.toLowerCase()) || user.surName
   useEffect(()=>{
     const filter = filterGuests(searchValue, users)
     setFilteredUsers(filter)
-  },[searchValue])
+  },[users, searchValue])
 
   return (
     <div className="container">
@@ -55,7 +55,7 @@ user.firstName.toLowerCase().includes(searchValue.toLowerCase()) || user.surName
           filteredUsers.map((user, index) =>
             <div key={index} className="col-md-12 g-3 p-0 col-lg-6 ">
               <div className="border h-100 m-2">
-                <img className="w-100" src={`http://backend.rakulagin.com${user.img}`} alt="photo"/>
+                <img className="w-100" src={`http://backend.rakulagin.com${user.img}`} alt=""/>
                 <div className='p-4'>
                   <h2>{user.firstName} {user.surName}</h2>
                   <p>Сторона: {user.side === 1 ? 'Жениха' : 'Невесты'}</p>
