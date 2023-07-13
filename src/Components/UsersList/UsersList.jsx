@@ -62,13 +62,6 @@ user.firstName.toLowerCase().includes(searchValue.toLowerCase()) || user.surName
                   <p>Активность: {user.activity === true ? 'Да' : 'Нет'}</p>
                   <p>История: {user.ourHistory ? user.ourHistory : 'Нет'}</p>
                   <p>Важность: {user.weight===1 ? 'Максимальная' : user.weight===2 ?  'Высокая' : user.weight===3 ? 'Средняя' : null}</p>
-                  <p>пойдет: {user.accept}</p>
-                  <p>пара: {user.pair}</p>
-                  <p>Место: {user.place}</p>
-                  <p>Машина: {user.car}</p>
-                  <p>Вино: {user.vine}</p>
-                  <p>Крепкие: {user.spirit}</p>
-                  {<p>Второй день: {user.secondDay}</p>}
                 </div>
               </div>
             </div>
