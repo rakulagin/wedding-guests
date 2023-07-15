@@ -67,7 +67,6 @@ const UsersList = () => {
       <WeightFilter/>
       <HistoryFilter/>
       <TableFilter/>
-
       <Button variant="primary" onClick={clearAllFilters}>Сбросить фильтры</Button>
 
       <div className="row mb-3">
@@ -79,10 +78,10 @@ const UsersList = () => {
                 <div className='p-4 userInfo'>
                   <h5>{user.firstName} {user.surName}</h5>
                   <p><span>Кто:</span> {user.who}</p>
-                  <p><span>Сторона: </span>{user.side === 1 ? 'Жениха' : 'Невесты'}</p>
+                  <p><span>Сторона: </span>{user.side === 1 ? '🧔‍♂️' : '👩'}</p>
                   <p><span>Стол: </span>{user.company}</p>
                   {/*<p><span>Активность: </span>{user.activity === true ? 'Высокая' : 'Низкая'}</p>*/}
-                  <p><span>Активность: </span>{user.activity === true ? '🙂' : '🙁'}</p>
+                  <p><span>Активность: </span>{user.activity === true ? '🥳' : '😡'}</p>
                   <p>
                     <span>Важность: </span>{user.weight === 1 ? '❤❤❤' : user.weight === 2 ? '❤❤🤍' : user.weight === 3 ? '❤🤍🤍' : null}
                     {/*<span>Важность: </span>{user.weight === 1 ? 'Родственники' : user.weight === 2 ? 'Близкие друзья' : user.weight === 3 ? 'Друзья' : null}*/}

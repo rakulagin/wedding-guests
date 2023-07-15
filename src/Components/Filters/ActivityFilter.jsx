@@ -30,7 +30,7 @@ const ActivityFilter = () => {
           type="radio"
           name="activity"
           value={1}
-          checked={activityFilter == 1}
+          checked={activityFilter === true}
           onChange={(e) => handleInputChange(e)}
         />
         <span>Высокая</span>
@@ -40,7 +40,7 @@ const ActivityFilter = () => {
           type="radio"
           name="activity"
           value={0}
-          checked={activityFilter == 0}
+          checked={activityFilter === false}
           onChange={(e) => handleInputChange(e)}
         />
         <span>Низкая</span>
