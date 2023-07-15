@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 
 const UsersList = () => {
@@ -14,6 +16,7 @@ const UsersList = () => {
   const [activityFilter, setActivityFilter] = useState('all');
   const [weightFilter, setWeightFilter] = useState('all');
   const [historyFilter, setHistoryFilter] = useState('all');
+  const [tableFilter, setTableFilter] = useState('all');
 
 
   const handleInputChange = (e) => {
@@ -26,8 +29,9 @@ const UsersList = () => {
     const usersWithActivity = activityFilter === 'all' ? usersWithSide : usersWithSide.filter(user => user.activity === Boolean(activityFilter))
     const usersWithWeight = weightFilter === 'all' ? usersWithActivity : usersWithActivity.filter(user => user.weight === Number(weightFilter))
     const usersWithHistory = historyFilter === 'all' ? usersWithWeight : usersWithWeight.filter(user => user.hasOwnProperty('ourHistory'))
+    const usersWithTables = tableFilter === 'all' ? usersWithHistory : usersWithHistory.filter(user => user.company === Number(tableFilter))
 
-    return usersWithHistory.filter((user) =>
+    return usersWithTables.filter((user) =>
       user.firstName.toLowerCase().includes(searchValue) || user.surName.toLowerCase().includes(searchValue)
     )
   }
@@ -38,6 +42,7 @@ const UsersList = () => {
     setActivityFilter('all')
     setWeightFilter('all')
     setHistoryFilter('all')
+    setTableFilter('all')
   }
 
 
@@ -56,11 +61,10 @@ const UsersList = () => {
   useEffect(() => {
     const filter = filterGuests(searchText, users)
     setFilteredUsers(filter)
-  }, [users, searchText, sideFilter, activityFilter, weightFilter, historyFilter])
+  }, [users, searchText, sideFilter, activityFilter, weightFilter, historyFilter, tableFilter])
 
 
-
-  console.log(users)
+  console.log(tableFilter)
 
 
   return (
@@ -218,7 +222,18 @@ const UsersList = () => {
         </label>
       </div>
 
-      <button onClick={clearAllFilters}>Сбросить фильтры</button>
+      {/*фильтр по столам*/}
+      <Form.Select aria-label="Default select example" value={tableFilter} onChange={(e)=>setTableFilter(e.target.value)}>
+        <option value="all">Все столы</option>
+        <option value="1">Стол №1 (молодожены)</option>
+        <option value="2">Стол №2 (родственники)</option>
+        <option value="3">Стол №3 (друзья невесты + Никита)</option>
+        <option value="4">Стол №4 (общие друзья)</option>
+        <option value="5">Стол №5 (коллеги жениха)</option>
+        <option value="6">Стол №6 (друзья жениха)</option>
+      </Form.Select>
+
+      <Button variant="primary" onClick={clearAllFilters}>Сбросить фильтры</Button>
 
       <div className="row mb-3">
         {
@@ -228,7 +243,9 @@ const UsersList = () => {
                 <img className="w-100" src={`http://backend.rakulagin.com${user.img}`} alt=""/>
                 <div className='p-4 userInfo'>
                   <h2>{user.firstName} {user.surName}</h2>
+                  <p><span>Кто:</span> {user.who}</p>
                   <p><span>Сторона: </span>{user.side === 1 ? 'Жениха' : 'Невесты'}</p>
+                  <p><span>Стол: </span>{user.company}</p>
                   <p><span>Активность: </span>{user.activity === true ? 'Высокая' : 'Низкая'}</p>
                   <p>
                     <span>Важность: </span>{user.weight === 1 ? 'Родственники' : user.weight === 2 ? 'Близкие друзья' : user.weight === 3 ? 'Друзья' : null}
