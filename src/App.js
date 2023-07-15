@@ -7,8 +7,6 @@ function App() {
     <div className="App">
       <Header/>
       <UsersList/>
-
-
     </div>
   );
 }

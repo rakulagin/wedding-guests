@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 
 
 const UsersList = () => {
@@ -31,6 +32,7 @@ const UsersList = () => {
     const usersWithHistory = historyFilter === 'all' ? usersWithWeight : usersWithWeight.filter(user => user.hasOwnProperty('ourHistory'))
     const usersWithTables = tableFilter === 'all' ? usersWithHistory : usersWithHistory.filter(user => user.company === Number(tableFilter))
 
+
     return usersWithTables.filter((user) =>
       user.firstName.toLowerCase().includes(searchValue) || user.surName.toLowerCase().includes(searchValue)
     )
@@ -45,13 +47,17 @@ const UsersList = () => {
     setTableFilter('all')
   }
 
+  const handleHistoryFilter = () => {
+    historyFilter === 'all' ? setHistoryFilter('yes') : setHistoryFilter('all')
+    console.log(historyFilter)
+  }
+
 
   useEffect(() => {
     try {
       axios.get('http://backend.rakulagin.com/users')
         .then(res => {
           setUsers(res.data)
-          setFilteredUsers(res.data)
         })
     } catch (e) {
       console.log(e)
@@ -74,14 +80,20 @@ const UsersList = () => {
 
       {/*поиск по имени*/}
       <div>
-        <input
-          type="text"
-          value={searchText}
-          onChange={(e) => handleInputChange(e)}
-          placeholder='имя/фамилия'
-        />
-        <button onClick={() => setSearchText('')}>Очистить поле</button>
+        <InputGroup className="">
+          <Form.Control
+            placeholder="имя/фамилия"
+            aria-label="searchInput"
+            aria-describedby="basic-addon2"
+            value={searchText}
+            onChange={(e) => handleInputChange(e)}
+          />
+          <Button onClick={() => setSearchText('')} variant="primary" id="button-addon2">
+            Очистить
+          </Button>
+        </InputGroup>
       </div>
+
       {/*фильтр по стороне*/}
       <div>
         <span>Сторона: </span>
@@ -199,31 +211,18 @@ const UsersList = () => {
 
       {/*фильтр по истории*/}
       <div>
-        <span>История: </span>
-        <label>
-          <input
-            type="radio"
-            name="history"
-            value='yes'
-            checked={historyFilter === 'yes'}
-            onChange={(e) => setHistoryFilter(e.target.value)}
-          />
-          <span>С историей</span>
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="history"
-            value="all"
-            checked={historyFilter === 'all'}
-            onChange={(e) => setHistoryFilter(e.target.value)}
-          />
-          <span>Все</span>
-        </label>
+        <span>Только и историей</span>
+        <Form.Switch
+          type="switch"
+          id="historySwitch"
+          checked={historyFilter === 'yes'}
+          onChange={handleHistoryFilter}
+        />
       </div>
 
       {/*фильтр по столам*/}
-      <Form.Select aria-label="Default select example" value={tableFilter} onChange={(e)=>setTableFilter(e.target.value)}>
+      <Form.Select aria-label="Default select example" value={tableFilter}
+                   onChange={(e) => setTableFilter(e.target.value)}>
         <option value="all">Все столы</option>
         <option value="1">Стол №1 (молодожены)</option>
         <option value="2">Стол №2 (родственники)</option>
@@ -242,7 +241,7 @@ const UsersList = () => {
               <div className="border h-100 m-2">
                 <img className="w-100" src={`http://backend.rakulagin.com${user.img}`} alt=""/>
                 <div className='p-4 userInfo'>
-                  <h2>{user.firstName} {user.surName}</h2>
+                  <h5>{user.firstName} {user.surName}</h5>
                   <p><span>Кто:</span> {user.who}</p>
                   <p><span>Сторона: </span>{user.side === 1 ? 'Жениха' : 'Невесты'}</p>
                   <p><span>Стол: </span>{user.company}</p>
