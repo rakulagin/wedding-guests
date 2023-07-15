@@ -62,7 +62,7 @@ const UsersList = () => {
     <div className="container">
       <p>Всего гостей: {users.length}</p>
       <p>Показано гостей: {filteredUsers.length}</p>
-
+      ❤🤍
       <SideFilter/>
       <ActivityFilter/>
       <WeightFilter/>
@@ -84,7 +84,8 @@ const UsersList = () => {
                   <p><span>Стол: </span>{user.company}</p>
                   <p><span>Активность: </span>{user.activity === true ? 'Высокая' : 'Низкая'}</p>
                   <p>
-                    <span>Важность: </span>{user.weight === 1 ? 'Родственники' : user.weight === 2 ? 'Близкие друзья' : user.weight === 3 ? 'Друзья' : null}
+                    <span>Важность: </span>{user.weight === 1 ? '❤❤❤' : user.weight === 2 ? '❤❤🤍' : user.weight === 3 ? '❤🤍🤍' : null}
+                    {/*<span>Важность: </span>{user.weight === 1 ? 'Родственники' : user.weight === 2 ? 'Близкие друзья' : user.weight === 3 ? 'Друзья' : null}*/}
                   </p>
                   <p><span>История: </span>{user.ourHistory ? user.ourHistory : 'Нет'}</p>
                 </div>
