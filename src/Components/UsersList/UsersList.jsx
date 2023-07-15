@@ -1,13 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import Button from 'react-bootstrap/Button';
 
-import {useDispatch, useSelector} from "react-redux";
-import {clear} from "../../redux/inputFilterSlice";
-import {clearAll} from "../../redux/filtersSlice";
+import {useSelector} from "react-redux";
 
 import ScrollToTop from "../ScrollToTop/ScrollToTop";
-import Filters from "../Filters/Filters";
+import FilterPanel from "../FilterPanel/FilterPanel";
 
 const UsersList = () => {
 
@@ -17,7 +14,6 @@ const UsersList = () => {
   const weightFilter = useSelector(state => state.filters.weightFilter)
   const historyFilter = useSelector(state => state.filters.historyFilter)
   const tableFilter = useSelector(state => state.filters.tableFilter)
-  const dispatch = useDispatch()
 
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([])
@@ -32,11 +28,6 @@ const UsersList = () => {
     return usersWithTables.filter((user) =>
       user.firstName.toLowerCase().includes(searchValue) || user.surName.toLowerCase().includes(searchValue)
     )
-  }
-
-  const clearAllFilters = () => {
-    dispatch(clear())
-    dispatch(clearAll())
   }
 
   useEffect(() => {
@@ -62,11 +53,7 @@ const UsersList = () => {
         <p><strong>Всего гостей:</strong> {users.length}</p>
       </div>
 
-      <div className="d-flex justify-content-between">
-        <Button variant="primary" onClick={clearAllFilters}>Сбросить фильтры</Button>
-        <Filters/>
-      </div>
-
+      <FilterPanel/>
 
       <div className="row mb-3">
         {
@@ -76,8 +63,8 @@ const UsersList = () => {
                 <div className='d-flex justify-content-between'>
                   <div className='p-2'>
                     <h5>{user.firstName} {user.surName}</h5>
-                    <p><strong>Кто:</strong> {user.who}</p>
                     <p><strong>Стол: </strong>{user.company}</p>
+                    <p><strong>Кто:</strong> {user.who}</p>
                     <p><strong>Сторона: </strong>{user.side === 1 ? '🤵' : '👰'}</p>
                     <p><strong>Активность: </strong>{user.activity === true ? '🥳' : '😡'}</p>
                     <p>

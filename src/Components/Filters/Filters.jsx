@@ -34,14 +34,14 @@ const Filters = () => {
         <Offcanvas.Body className="p-2">
           <div>
             <SideFilter/>
-            <ActivityFilter/>
             <WeightFilter/>
+            <ActivityFilter/>
             <HistoryFilter/>
             <TableFilter/>
           </div>
           <Button
             className="w-100"
-            variant="secondary"
+            variant="outline-primary"
             onClick={clearAllFilters}
           >
             Сбросить
