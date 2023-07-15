@@ -27,7 +27,13 @@ const Filters = () => {
   const [show, setShow] = useState(false);
 
   const handleShow = () => setShow(true);
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false)
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
 
   return (
     <div>
