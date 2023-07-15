@@ -62,7 +62,6 @@ const UsersList = () => {
     <div className="container">
       <p>Всего гостей: {users.length}</p>
       <p>Показано гостей: {filteredUsers.length}</p>
-      ❤🤍
       <SideFilter/>
       <ActivityFilter/>
       <WeightFilter/>
