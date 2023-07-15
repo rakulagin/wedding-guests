@@ -11,3 +11,6 @@ p {
   margin: 0 !important;
 }
 
+.userInfo span {
+  font-weight: bold;
+}
