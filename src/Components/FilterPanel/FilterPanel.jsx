@@ -45,7 +45,7 @@ const FilterPanel = () => {
   return (
     <div
       // className="d-flex justify-content-between"
-      className={isSticky ? 'container fixed-top pt-4 opacity-75 w-100 d-flex justify-content-between' : 'd-flex' +
+      className={isSticky ? 'container fixed-top pt-3 opacity-75 w-100 d-flex justify-content-between' : 'd-flex' +
         ' justify-content-between'}
     >
       <Button variant="primary" onClick={clearAllFilters}>Сбросить фильтры</Button>
