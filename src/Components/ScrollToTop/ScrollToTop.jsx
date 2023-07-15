@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import Button from 'react-bootstrap/Button';
 
 const ScrollToTopButton = () => {
@@ -24,15 +24,14 @@ const ScrollToTopButton = () => {
   }, []);
 
   return (
-    <Button
-      variant="primary"
-      className=" position-fixed bottom-0 end-0 opacity-75 mb-3 me-3"
-      style={{ display: isVisible ? 'block' : 'none' }}
-      onClick={scrollToTop}
-    >
-      Наверх
-    </Button>
-
+      <Button
+        variant="primary"
+        className=" position-fixed bottom-0 end-0 opacity-75 mb-3 me-3"
+        style={{display: isVisible ? 'block' : 'none'}}
+        onClick={scrollToTop}
+      >
+        В начало
+      </Button>
   );
 };
 
