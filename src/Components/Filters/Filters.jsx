@@ -18,6 +18,10 @@ const Filters = () => {
   const clearAllFilters = () => {
     dispatch(clear())
     dispatch(clearAll())
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   }
 
   const [show, setShow] = useState(false);
