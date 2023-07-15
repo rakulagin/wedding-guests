@@ -16,9 +16,10 @@ const HistoryFilter = () => {
   }
 
   return (
-    <div>
-      <span>Только и историей</span>
+    <div className="border rounded p-1 d-flex align-items-center gap-3 mb-2">
+      <strong>Только c&nbsp;историей</strong>
       <Form.Switch
+        style={{ transform: 'scale(1.5)' }}
         type="switch"
         id="historySwitch"
         checked={historyFilter === 'yes'}

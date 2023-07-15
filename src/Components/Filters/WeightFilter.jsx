@@ -1,4 +1,5 @@
 import React from 'react';
+import {Button} from 'react-bootstrap';
 
 import {useSelector} from "react-redux";
 import {useDispatch} from "react-redux";
@@ -25,47 +26,79 @@ const WeightFilter = () => {
   }
 
   return (
-    <div>
-      <span>Важность: </span>
+    <div className="border rounded p-1 d-flex flex-column mb-2">
+      <strong>Важность: </strong>
       <label>
         <input
+          className="d-none"
           type="radio"
           name="weight"
           value={1}
           checked={weightFilter === 1}
           onChange={(e) => handleInputChange(e)}
         />
-        <span>Родственники</span>
+        <Button
+          className='w-100 mb-1'
+          value='1'
+          variant={weightFilter === 1 ? 'primary' : 'outline-primary'}
+          onClick={(e) => handleInputChange(e)}
+        >
+          Родственники
+        </Button>
       </label>
       <label>
         <input
+          className="d-none"
           type="radio"
           name="weight"
           value={2}
           checked={weightFilter === 2}
           onChange={(e) => handleInputChange(e)}
         />
-        <span>Близкие друзья</span>
+        <Button
+          className='w-100 mb-1'
+          value='2'
+          variant={weightFilter === 2 ? 'primary' : 'outline-primary'}
+          onClick={(e) => handleInputChange(e)}
+        >
+          Близкие друзья
+        </Button>
       </label>
       <label>
         <input
+          className="d-none"
           type="radio"
           name="weight"
           value={3}
           checked={weightFilter === 3}
           onChange={(e) => handleInputChange(e)}
         />
-        <span>Друзья</span>
+        <Button
+          className='w-100 mb-1'
+          value='3'
+          variant={weightFilter === 3 ? 'primary' : 'outline-primary'}
+          onClick={(e) => handleInputChange(e)}
+        >
+          Близкие друзья
+        </Button>
       </label>
       <label>
         <input
+          className="d-none"
           type="radio"
           name="weight"
           value="all"
           checked={weightFilter === 'all'}
           onChange={(e) => handleInputChange(e)}
         />
-        <span>Все</span>
+        <Button
+          className='w-100 mb-1'
+          value='all'
+          variant={weightFilter === 'all' ? 'primary' : 'outline-primary'}
+          onClick={(e) => handleInputChange(e)}
+        >
+          Близкие друзья
+        </Button>
       </label>
     </div>
   );

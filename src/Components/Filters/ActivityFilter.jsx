@@ -1,4 +1,5 @@
 import React from 'react';
+import {Button} from 'react-bootstrap';
 
 import {useSelector} from "react-redux";
 import {useDispatch} from "react-redux";
@@ -23,37 +24,64 @@ const ActivityFilter = () => {
   }
 
   return (
-    <div>
-      <span>Активность: </span>
+    <div className="border rounded p-1 d-flex flex-column mb-2">
+      <strong>Активность: </strong>
       <label>
         <input
+          className="d-none"
           type="radio"
           name="activity"
           value={1}
           checked={activityFilter === true}
           onChange={(e) => handleInputChange(e)}
         />
-        <span>Высокая</span>
+        {/*<span>Высокая</span>*/}
+        <Button
+          className='w-100 mb-1'
+          value='1'
+          variant={activityFilter === true ? 'primary' : 'outline-primary'}
+          onClick={(e) => handleInputChange(e)}
+        >
+          Высокая
+        </Button>
       </label>
       <label>
         <input
+          className="d-none"
           type="radio"
           name="activity"
           value={0}
           checked={activityFilter === false}
           onChange={(e) => handleInputChange(e)}
         />
-        <span>Низкая</span>
+        {/*<span>Низкая</span>*/}
+        <Button
+          className='w-100 mb-1'
+          value='0'
+          variant={activityFilter === false ? 'primary' : 'outline-primary'}
+          onClick={(e) => handleInputChange(e)}
+        >
+          Низкая
+        </Button>
       </label>
       <label>
         <input
+          className="d-none"
           type="radio"
           name="activity"
           value="all"
           checked={activityFilter === 'all'}
           onChange={(e) => handleInputChange(e)}
         />
-        <span>Все</span>
+        {/*<span>Все</span>*/}
+        <Button
+          className='w-100 mb-1'
+          value='all'
+          variant={activityFilter === 'all' ? 'primary' : 'outline-primary'}
+          onClick={(e) => handleInputChange(e)}
+        >
+          Все
+        </Button>
       </label>
     </div>
   );

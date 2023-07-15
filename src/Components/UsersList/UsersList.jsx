@@ -1,18 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import Button from 'react-bootstrap/Button';
-import Accordion from 'react-bootstrap/Accordion';
-import Card from 'react-bootstrap/Card';
 
 import {useDispatch, useSelector} from "react-redux";
 import {clear} from "../../redux/inputFilterSlice";
 import {clearAll} from "../../redux/filtersSlice";
 
-import SideFilter from "../Filters/SideFilter";
-import ActivityFilter from "../Filters/ActivityFilter";
-import WeightFilter from "../Filters/WeightFilter";
-import HistoryFilter from "../Filters/HistoryFilter";
-import TableFilter from "../Filters/TableFilter";
+import ScrollToTop from "../ScrollToTop/ScrollToTop";
+import Filters from "../Filters/Filters";
 
 const UsersList = () => {
 
@@ -62,28 +57,28 @@ const UsersList = () => {
 
   return (
     <div className="container">
-      <p>Всего гостей: {users.length}</p>
-      <p>Показано гостей: {filteredUsers.length}</p>
-      <SideFilter/>
-      <ActivityFilter/>
-      <WeightFilter/>
-      <HistoryFilter/>
-      <TableFilter/>
-      <Button variant="primary" onClick={clearAllFilters}>Сбросить фильтры</Button>
+      <div className='d-flex justify-content-between border rounded p-1 mb-3'>
+        <p><strong>Показано гостей:</strong> {filteredUsers.length}</p>
+        <p><strong>Всего гостей:</strong> {users.length}</p>
+      </div>
 
-      
+      <div className="d-flex justify-content-between">
+        <Button variant="primary" onClick={clearAllFilters}>Сбросить фильтры</Button>
+        <Filters/>
+      </div>
+
 
       <div className="row mb-3">
         {
           filteredUsers.map((user, index) =>
             <div key={index} className="col-md-12 g-3 p-0 col-lg-6 ">
-              <div className="border h-100 m-2">
-                <img className="w-100" src={`http://backend.rakulagin.com${user.img}`} alt=""/>
+              <div className="border rounded h-100 m-2">
+                <img className="w-100 rounded-top" src={`http://backend.rakulagin.com${user.img}`} alt=""/>
                 <div className='p-4 userInfo'>
                   <h5>{user.firstName} {user.surName}</h5>
                   <p><span>Кто:</span> {user.who}</p>
                   <p><span>Стол: </span>{user.company}</p>
-                  <p><span>Сторона: </span>{user.side === 1 ? '🧔‍♂️' : '👩'}</p>
+                  <p><span>Сторона: </span>{user.side === 1 ? '🤵' : '👰'}</p>
                   {/*<p><span>Активность: </span>{user.activity === true ? 'Высокая' : 'Низкая'}</p>*/}
                   <p><span>Активность: </span>{user.activity === true ? '🥳' : '😡'}</p>
                   <p>
@@ -97,6 +92,7 @@ const UsersList = () => {
           )
         }
       </div>
+      <ScrollToTop/>
     </div>
   );
 };
