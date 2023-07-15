@@ -1,37 +1,36 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
 
+import {useDispatch, useSelector} from "react-redux";
+import {clear} from "../../redux/inputFilterSlice";
+import {clearAll} from "../../redux/filtersSlice";
+
+import SideFilter from "../Filters/SideFilter";
+import ActivityFilter from "../Filters/ActivityFilter";
+import WeightFilter from "../Filters/WeightFilter";
+import HistoryFilter from "../Filters/HistoryFilter";
+import TableFilter from "../Filters/TableFilter";
 
 const UsersList = () => {
 
-  const [users, setUsers] = useState([]);
+  const textValue = useSelector(state => state.textInputReducer.text)
+  const sideFilter = useSelector(state => state.filters.sideFilter)
+  const activityFilter = useSelector(state => state.filters.activityFilter)
+  const weightFilter = useSelector(state => state.filters.weightFilter)
+  const historyFilter = useSelector(state => state.filters.historyFilter)
+  const tableFilter = useSelector(state => state.filters.tableFilter)
+  const dispatch = useDispatch()
 
+  const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([])
 
-  const [searchText, setSearchText] = useState('')
-
-  const [sideFilter, setSideFilter] = useState('all');
-  const [activityFilter, setActivityFilter] = useState('all');
-  const [weightFilter, setWeightFilter] = useState('all');
-  const [historyFilter, setHistoryFilter] = useState('all');
-  const [tableFilter, setTableFilter] = useState('all');
-
-
-  const handleInputChange = (e) => {
-    setSearchText(e.target.value.toLowerCase())
-  }
-
   const filterGuests = (searchValue, users) => {
-
     const usersWithSide = sideFilter === 'all' ? users : users.filter(user => user.side === Number(sideFilter))
     const usersWithActivity = activityFilter === 'all' ? usersWithSide : usersWithSide.filter(user => user.activity === Boolean(activityFilter))
     const usersWithWeight = weightFilter === 'all' ? usersWithActivity : usersWithActivity.filter(user => user.weight === Number(weightFilter))
     const usersWithHistory = historyFilter === 'all' ? usersWithWeight : usersWithWeight.filter(user => user.hasOwnProperty('ourHistory'))
     const usersWithTables = tableFilter === 'all' ? usersWithHistory : usersWithHistory.filter(user => user.company === Number(tableFilter))
-
 
     return usersWithTables.filter((user) =>
       user.firstName.toLowerCase().includes(searchValue) || user.surName.toLowerCase().includes(searchValue)
@@ -39,19 +38,9 @@ const UsersList = () => {
   }
 
   const clearAllFilters = () => {
-    setSearchText('')
-    setSideFilter('all')
-    setActivityFilter('all')
-    setWeightFilter('all')
-    setHistoryFilter('all')
-    setTableFilter('all')
+    dispatch(clear())
+    dispatch(clearAll())
   }
-
-  const handleHistoryFilter = () => {
-    historyFilter === 'all' ? setHistoryFilter('yes') : setHistoryFilter('all')
-    console.log(historyFilter)
-  }
-
 
   useEffect(() => {
     try {
@@ -65,172 +54,20 @@ const UsersList = () => {
   }, []);
 
   useEffect(() => {
-    const filter = filterGuests(searchText, users)
+    const filter = filterGuests(textValue, users)
     setFilteredUsers(filter)
-  }, [users, searchText, sideFilter, activityFilter, weightFilter, historyFilter, tableFilter])
-
-
-  console.log(tableFilter)
-
+  }, [users, textValue, sideFilter, activityFilter, weightFilter, historyFilter, tableFilter])
 
   return (
     <div className="container">
       <p>Всего гостей: {users.length}</p>
       <p>Показано гостей: {filteredUsers.length}</p>
 
-      {/*поиск по имени*/}
-      <div>
-        <InputGroup className="">
-          <Form.Control
-            placeholder="имя/фамилия"
-            aria-label="searchInput"
-            aria-describedby="basic-addon2"
-            value={searchText}
-            onChange={(e) => handleInputChange(e)}
-          />
-          <Button onClick={() => setSearchText('')} variant="primary" id="button-addon2">
-            Очистить
-          </Button>
-        </InputGroup>
-      </div>
-
-      {/*фильтр по стороне*/}
-      <div>
-        <span>Сторона: </span>
-        <label>
-          <input
-            type="radio"
-            name="side"
-            value="1"
-            checked={sideFilter === '1'}
-            onChange={(e) => setSideFilter(e.target.value)}
-          />
-          <span>Жениха</span>
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="side"
-            value="2"
-            checked={sideFilter === '2'}
-            onChange={(e) => setSideFilter(e.target.value)}
-          />
-          <span>Невесты</span>
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="side"
-            value="all"
-            checked={sideFilter === 'all'}
-            onChange={(e) => setSideFilter(e.target.value)}
-          />
-          <span>Обе стороны</span>
-        </label>
-      </div>
-
-      {/*фильтр по активности*/}
-      <div>
-        <span>Активность: </span>
-        <label>
-          <input
-            type="radio"
-            name="activity"
-            value={1}
-            checked={activityFilter == 1}
-            onChange={(e) => setActivityFilter(parseInt(e.target.value))}
-          />
-          <span>Высокая</span>
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="activity"
-            value={0}
-            checked={activityFilter == 0}
-            onChange={(e) => setActivityFilter(parseInt(e.target.value))}
-          />
-          <span>Низкая</span>
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="activity"
-            value="all"
-            checked={activityFilter === 'all'}
-            onChange={(e) => setActivityFilter(e.target.value)}
-          />
-          <span>Все</span>
-        </label>
-      </div>
-
-      {/*фильтр по важности*/}
-      <div>
-        <span>Важность: </span>
-        <label>
-          <input
-            type="radio"
-            name="weight"
-            value={1}
-            checked={weightFilter === 1}
-            onChange={(e) => setWeightFilter(parseInt(e.target.value))}
-          />
-          <span>Родственники</span>
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="weight"
-            value={2}
-            checked={weightFilter === 2}
-            onChange={(e) => setWeightFilter(parseInt(e.target.value))}
-          />
-          <span>Близкие друзья</span>
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="weight"
-            value={3}
-            checked={weightFilter === 3}
-            onChange={(e) => setWeightFilter(parseInt(e.target.value))}
-          />
-          <span>Друзья</span>
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="weight"
-            value="all"
-            checked={weightFilter === 'all'}
-            onChange={(e) => setWeightFilter(e.target.value)}
-          />
-          <span>Все</span>
-        </label>
-      </div>
-
-      {/*фильтр по истории*/}
-      <div>
-        <span>Только и историей</span>
-        <Form.Switch
-          type="switch"
-          id="historySwitch"
-          checked={historyFilter === 'yes'}
-          onChange={handleHistoryFilter}
-        />
-      </div>
-
-      {/*фильтр по столам*/}
-      <Form.Select aria-label="Default select example" value={tableFilter}
-                   onChange={(e) => setTableFilter(e.target.value)}>
-        <option value="all">Все столы</option>
-        <option value="1">Стол №1 (молодожены)</option>
-        <option value="2">Стол №2 (родственники)</option>
-        <option value="3">Стол №3 (друзья невесты + Никита)</option>
-        <option value="4">Стол №4 (общие друзья)</option>
-        <option value="5">Стол №5 (коллеги жениха)</option>
-        <option value="6">Стол №6 (друзья жениха)</option>
-      </Form.Select>
+      <SideFilter/>
+      <ActivityFilter/>
+      <WeightFilter/>
+      <HistoryFilter/>
+      <TableFilter/>
 
       <Button variant="primary" onClick={clearAllFilters}>Сбросить фильтры</Button>
 

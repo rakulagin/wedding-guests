@@ -3,9 +3,9 @@ import TextInput from "../Filters/TextInput";
 
 const Header = () => {
   return (
-    <div className="p-2 bg-primary mb-3">
+    <div className="pt-2 pb-2 bg-primary mb-3">
       <div className="container d-flex justify-content-between align-items-center">
-        <div className=" h4 text-white ">Наши гости</div>
+        <h6 className="text-white mb-0">Наши гости</h6>
         <TextInput/>
       </div>
     </div>
