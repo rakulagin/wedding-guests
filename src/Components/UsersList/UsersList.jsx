@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import Button from 'react-bootstrap/Button';
+import Accordion from 'react-bootstrap/Accordion';
+import Card from 'react-bootstrap/Card';
 
 import {useDispatch, useSelector} from "react-redux";
 import {clear} from "../../redux/inputFilterSlice";
@@ -69,6 +71,8 @@ const UsersList = () => {
       <TableFilter/>
       <Button variant="primary" onClick={clearAllFilters}>Сбросить фильтры</Button>
 
+      
+
       <div className="row mb-3">
         {
           filteredUsers.map((user, index) =>
@@ -78,8 +82,8 @@ const UsersList = () => {
                 <div className='p-4 userInfo'>
                   <h5>{user.firstName} {user.surName}</h5>
                   <p><span>Кто:</span> {user.who}</p>
-                  <p><span>Сторона: </span>{user.side === 1 ? '🧔‍♂️' : '👩'}</p>
                   <p><span>Стол: </span>{user.company}</p>
+                  <p><span>Сторона: </span>{user.side === 1 ? '🧔‍♂️' : '👩'}</p>
                   {/*<p><span>Активность: </span>{user.activity === true ? 'Высокая' : 'Низкая'}</p>*/}
                   <p><span>Активность: </span>{user.activity === true ? '🥳' : '😡'}</p>
                   <p>
