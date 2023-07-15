@@ -35,7 +35,6 @@ const ActivityFilter = () => {
           checked={activityFilter === true}
           onChange={(e) => handleInputChange(e)}
         />
-        {/*<span>Высокая</span>*/}
         <Button
           className='w-100 mb-1'
           value='1'
@@ -54,7 +53,6 @@ const ActivityFilter = () => {
           checked={activityFilter === false}
           onChange={(e) => handleInputChange(e)}
         />
-        {/*<span>Низкая</span>*/}
         <Button
           className='w-100 mb-1'
           value='0'
@@ -73,7 +71,6 @@ const ActivityFilter = () => {
           checked={activityFilter === 'all'}
           onChange={(e) => handleInputChange(e)}
         />
-        {/*<span>Все</span>*/}
         <Button
           className='w-100 mb-1'
           value='all'

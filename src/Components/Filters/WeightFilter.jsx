@@ -79,7 +79,7 @@ const WeightFilter = () => {
           variant={weightFilter === 3 ? 'primary' : 'outline-primary'}
           onClick={(e) => handleInputChange(e)}
         >
-          Близкие друзья
+          Друзья
         </Button>
       </label>
       <label>
@@ -97,7 +97,7 @@ const WeightFilter = () => {
           variant={weightFilter === 'all' ? 'primary' : 'outline-primary'}
           onClick={(e) => handleInputChange(e)}
         >
-          Близкие друзья
+          Все
         </Button>
       </label>
     </div>

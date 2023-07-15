@@ -1,13 +1,24 @@
 import React, {useState} from 'react';
 import {Button, Offcanvas} from 'react-bootstrap';
 
+import {useDispatch} from "react-redux";
+
 import SideFilter from "./SideFilter";
 import ActivityFilter from "./ActivityFilter";
 import WeightFilter from "./WeightFilter";
 import HistoryFilter from "./HistoryFilter";
 import TableFilter from "./TableFilter";
+import {clear} from "../../redux/inputFilterSlice";
+import {clearAll} from "../../redux/filtersSlice";
 
 const Filters = () => {
+
+  const dispatch = useDispatch()
+
+  const clearAllFilters = () => {
+    dispatch(clear())
+    dispatch(clearAll())
+  }
 
   const [show, setShow] = useState(false);
 
@@ -19,11 +30,7 @@ const Filters = () => {
       <Button variant="primary" onClick={handleShow}>
         Фильтры
       </Button>
-
       <Offcanvas className="w-50" show={show} onHide={handleClose} placement="end">
-        {/*<Offcanvas.Header closeButton>*/}
-        {/*  <Offcanvas.Title>Заголовок блока</Offcanvas.Title>*/}
-        {/*</Offcanvas.Header>*/}
         <Offcanvas.Body className="p-2">
           <div>
             <SideFilter/>
@@ -34,15 +41,13 @@ const Filters = () => {
           </div>
           <Button
             className="w-100"
-            variant="outline-primary"
-            onClick={handleClose}
+            variant="secondary"
+            onClick={clearAllFilters}
           >
-            Закрыть
+            Сбросить
           </Button>
         </Offcanvas.Body>
       </Offcanvas>
-
-
     </div>
   );
 };
