@@ -41,7 +41,7 @@ const Filters = () => {
           </div>
           <Button
             className="w-100"
-            variant="outline-primary"
+            variant="outline-danger"
             onClick={clearAllFilters}
           >
             Сбросить
