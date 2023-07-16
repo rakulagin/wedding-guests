@@ -29,10 +29,8 @@ const FilterPanel = () => {
 
       if (scrollTop >= menuHeight) {
         setIsSticky(true)
-        console.log('true')
       } else {
         setIsSticky(false)
-        console.log('false')
       }
     };
 
