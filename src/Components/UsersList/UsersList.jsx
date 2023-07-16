@@ -5,6 +5,7 @@ import {useSelector} from "react-redux";
 
 import ScrollToTop from "../ScrollToTop/ScrollToTop";
 import FilterPanel from "../FilterPanel/FilterPanel";
+import ActiveFilters from "../ActiveFilters/ActiveFilters";
 
 const UsersList = () => {
 
@@ -46,12 +47,17 @@ const UsersList = () => {
     setFilteredUsers(filter)
   }, [users, textValue, sideFilter, activityFilter, weightFilter, historyFilter, tableFilter])
 
+  console.log(typeof weightFilter)
+  console.log(weightFilter)
+
   return (
     <div className="container">
       <div className='d-flex justify-content-between border rounded p-1 mb-3'>
         <p><strong>Показано гостей:</strong> {filteredUsers.length}</p>
         <p><strong>Всего гостей:</strong> {users.length}</p>
       </div>
+
+      <ActiveFilters/>
 
       <FilterPanel/>
 

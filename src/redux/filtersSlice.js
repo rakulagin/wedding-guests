@@ -32,9 +32,24 @@ const filtersSlice = createSlice({
       state.historyFilter = 'all'
       state.tableFilter = 'all'
     },
+    clearSide (state) {
+      state.sideFilter = 'all'
+    },
+    clearActivity (state) {
+      state.activityFilter = 'all'
+    },
+    clearWeight (state) {
+      state.weightFilter = 'all'
+    },
+    clearHistory (state) {
+      state.historyFilter = 'all'
+    },
+    clearTable (state) {
+      state.tableFilter = 'all'
+    },
   }
 })
 
-export const {changeSide, changeActivity, changeWeight, changeHistory, changeTable, clearAll} = filtersSlice.actions
+export const {changeSide, changeActivity, changeWeight, changeHistory, changeTable, clearAll, clearSide, clearActivity, clearWeight, clearHistory, clearTable} = filtersSlice.actions
 
 export default filtersSlice.reducer
