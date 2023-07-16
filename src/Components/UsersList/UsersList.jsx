@@ -67,7 +67,7 @@ const UsersList = () => {
             <div key={index} className="col-md-12 g-3 p-0 col-lg-6">
               <div className="border rounded h-100 m-2 bg-body-secondary">
                 <div className='d-flex justify-content-between'>
-                  <div className='p-2 d-flex flex-column justify-content-between'>
+                  <div className='p-2 d-flex flex-column'>
                     <h5>{user.firstName} {user.surName}</h5>
                     <p><strong>Стол: </strong>№{user.company}</p>
                     <p><strong>Кто:</strong> {user.who}</p>
