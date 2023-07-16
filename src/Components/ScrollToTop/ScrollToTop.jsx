@@ -26,7 +26,7 @@ const ScrollToTopButton = () => {
   return (
       <Button
         variant="primary"
-        className=" position-fixed bottom-0 end-0 opacity-75 mb-3 me-3"
+        className=" position-fixed bottom-0 end-0 opacity-75 mb-5 me-2"
         style={{display: isVisible ? 'block' : 'none'}}
         onClick={scrollToTop}
       >

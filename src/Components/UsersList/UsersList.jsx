@@ -47,9 +47,6 @@ const UsersList = () => {
     setFilteredUsers(filter)
   }, [users, textValue, sideFilter, activityFilter, weightFilter, historyFilter, tableFilter])
 
-  console.log(typeof weightFilter)
-  console.log(weightFilter)
-
   return (
     <div className="container">
       <div className='d-flex justify-content-between border rounded p-1 mb-3'>
