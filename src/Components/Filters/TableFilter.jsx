@@ -13,8 +13,12 @@ const TableFilter = () => {
   const dispatch = useDispatch()
 
   const handleInputChange = (e) => {
-    const data = parseInt(e.target.value)
-    dispatch(changeTable(data))
+    const data = e.target.value
+    if (e.target.value === 'all') {
+      dispatch(changeTable(data))
+    } else {
+      dispatch(changeTable(parseInt(data)))
+    }
   }
 
   return (
