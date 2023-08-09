@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 
+import User from '../User'
+
 import {useSelector} from "react-redux";
 
 import ScrollToTop from "../ScrollToTop/ScrollToTop";
@@ -61,31 +63,43 @@ const UsersList = () => {
       <div className="row mb-3">
         {
           filteredUsers.map((user, index) =>
-            <div key={index} className="col-md-12 g-3 p-0 col-lg-6">
-              <div className="border rounded h-100 m-2 bg-body-secondary">
-                <div className='d-flex justify-content-between'>
-                  <div className='p-2 d-flex flex-column'>
-                    <h5>{user.firstName} {user.surName}</h5>
-                    <p><strong>Стол: </strong>№{user.company}</p>
-                    <p><strong>Кто:</strong> {user.who}</p>
-                    <p><strong>Сторона: </strong>{user.side === 1 ? '🤵' : '👰'}</p>
-                    <p><strong>Активность: </strong>{user.activity === true ? '💃' : '🙅'}</p>
-                    <p>
-                      <strong>Важность: </strong>{user.weight === 1 ? '❤❤❤' : user.weight === 2 ? '❤❤🤍' : user.weight === 3 ? '❤🤍🤍' : null}
-                    </p>
-                  </div>
-
-                  <img
-                    style={{ borderTopRightRadius: '5px'}}
-                    className="w-50 object-fit-cover "
-                    src={`http://backend.rakulagin.com${user.imgForWeddingHost}`} alt=""
-                  />
-                </div>
-                <div className='p-2'>
-                  <p><strong>История: </strong>{user.ourHistory ? user.ourHistory : 'Нет'}</p>
-                </div>
-              </div>
-            </div>
+            // <div key={index} className="col-md-12 g-3 p-0 col-lg-6">
+            //   <div className="border rounded h-100 m-2 bg-body-secondary">
+            //     <div className='d-flex justify-content-between'>
+            //       <div className='p-2 d-flex flex-column'>
+            //         <h5>{user.firstName} {user.surName}</h5>
+            //         <p><strong>Стол: </strong>№{user.company}</p>
+            //         <p><strong>Кто:</strong> {user.who}</p>
+            //         <p><strong>Сторона: </strong>{user.side === 1 ? '🤵' : '👰'}</p>
+            //         <p><strong>Активность: </strong>{user.activity === true ? '💃' : '🙅'}</p>
+            //         <p>
+            //           <strong>Важность: </strong>{user.weight === 1 ? '❤❤❤' : user.weight === 2 ? '❤❤🤍' : user.weight === 3 ? '❤🤍🤍' : null}
+            //         </p>
+            //       </div>
+            //
+            //       <img
+            //         style={{ borderTopRightRadius: '5px'}}
+            //         className="w-50 object-fit-cover "
+            //         src={`http://backend.rakulagin.com${user.imgForWeddingHost}`} alt=""
+            //       />
+            //     </div>
+            //     <div className='p-2'>
+            //       <p><strong>История: </strong>{user.ourHistory ? user.ourHistory : 'Нет'}</p>
+            //     </div>
+            //   </div>
+            // </div>
+            <User
+              key={index}
+              firstName={user.firstName}
+              surName={user.surName}
+              company={user.company}
+              who={user.who}
+              side={user.side}
+              activity={user.activity}
+              weight={user.weight}
+              img={user.imgForWeddingHost}
+              history={user.ourHistory}
+            />
           )
         }
       </div>
