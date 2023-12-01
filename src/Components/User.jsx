@@ -4,7 +4,7 @@ import { useInView } from 'react-intersection-observer'
 const User = ({firstName, surName, company, who, side, activity, weight, img, history}) => {
 
   const { ref, inView} = useInView({
-    threshold: 0,
+    threshold: 1,
     triggerOnce: true,
   })
 
@@ -28,7 +28,7 @@ const User = ({firstName, surName, company, who, side, activity, weight, img, hi
               <img
                 style={{ borderTopRightRadius: '5px'}}
                 className="w-50 object-fit-cover "
-                src={`http://backend.rakulagin.com${img}`} alt=""
+                src={`https://backend.rakulagin.com${img}`} alt=""
               />
             ) : (
               <div className="w-50"></div>

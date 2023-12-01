@@ -1,5 +1,5 @@
 import React from 'react';
-import TextInput from "../Filters/TextInput";
+import TextInput from "./Filters/TextInput";
 
 const Header = () => {
   return (
