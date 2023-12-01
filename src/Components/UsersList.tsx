@@ -69,7 +69,7 @@ const UsersList: React.FC = () => {
                 <p><strong>Всего гостей:</strong> {users.length}</p>
             </div>
 
-            <ActiveFilters/>
+            <ActiveFilters/> 
 
             <FilterPanel/>
 
