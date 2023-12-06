@@ -23,11 +23,17 @@ const UsersList: React.FC = () => {
         ourHistory?: string,
     }
 
+    // @ts-ignore
     const textValue = useSelector(state=> state.textInputReducer.text)
+    // @ts-ignore
     const sideFilter = useSelector(state => state.filters.sideFilter)
+    // @ts-ignore
     const activityFilter = useSelector(state => state.filters.activityFilter)
+    // @ts-ignore
     const weightFilter = useSelector(state => state.filters.weightFilter)
+    // @ts-ignore
     const historyFilter = useSelector(state => state.filters.historyFilter)
+    // @ts-ignore
     const tableFilter = useSelector(state => state.filters.tableFilter)
 
     const [users, setUsers] = useState<User[]>([]);
@@ -35,12 +41,18 @@ const UsersList: React.FC = () => {
 
 
     const filterGuests = (searchValue: string, users: any) => {
+        // @ts-ignore
         const usersWithSide = sideFilter === 'all' ? users : users.filter(user => user.side === Number(sideFilter))
+        // @ts-ignore
         const usersWithActivity = activityFilter === 'all' ? usersWithSide : usersWithSide.filter(user => user.activity === Boolean(activityFilter))
+        // @ts-ignore
         const usersWithWeight = weightFilter === 'all' ? usersWithActivity : usersWithActivity.filter(user => user.weight === Number(weightFilter))
+        // @ts-ignore
         const usersWithHistory = historyFilter === 'all' ? usersWithWeight : usersWithWeight.filter(user => user.hasOwnProperty('ourHistory'))
+        // @ts-ignore
         const usersWithTables = tableFilter === 'all' ? usersWithHistory : usersWithHistory.filter(user => user.company === Number(tableFilter))
 
+        // @ts-ignore
         return usersWithTables.filter((user) =>
             user.firstName.toLowerCase().includes(searchValue) || user.surName.toLowerCase().includes(searchValue)
         )
